@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import {
@@ -50,7 +50,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       icon: AlertTriangle,
       badge: unacknowledgedAlertsCount > 0 ? unacknowledgedAlertsCount : undefined,
     },
-    { id: 'copilot', label: 'NWIS AI Copilot', icon: Bot, badge: 'AI' },
+    { id: 'copilot', label: 'WellVista Copilot', icon: Bot, badge: 'AI' },
     { id: 'fleet', label: 'Fleet Overview', icon: Grid, badge: '18 Rigs' },
   ];
 
@@ -164,7 +164,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <span>HUMAN-IN-THE-LOOP</span>
           </div>
           <p className="text-[10px] leading-relaxed font-medium" style={{ color: '#cec9e1' }}>
-            NWIS operates as an <strong style={{ color: '#8968bf' }}>advisory intelligence layer</strong>. All operational decisions require human driller validation.
+            WellVista operates as an <strong style={{ color: '#8968bf' }}>advisory intelligence layer</strong>. All operational decisions require human driller validation.
           </p>
         </div>
 

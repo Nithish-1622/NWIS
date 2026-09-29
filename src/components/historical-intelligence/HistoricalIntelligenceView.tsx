@@ -39,31 +39,25 @@ export const HistoricalIntelligenceView: React.FC<HistoricalIntelligenceViewProp
   return (
     <div className="space-y-4 text-[#f0edf8]">
       {/* Header Banner */}
-      <div className="bg-[#110d1e]/90 border border-[#8968bf]/[0.2] rounded-xl p-4 flex flex-wrap items-center justify-between gap-4 shadow-md">
-        <div className="flex items-center space-x-3">
-          <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400">
-            <FileText className="w-6 h-6" />
-          </div>
-          <div>
-            <h2 className="text-sm font-bold text-white uppercase tracking-wider">
-              HISTORICAL DRILLING KNOWLEDGE & DOCUMENT INTELLIGENCE
-            </h2>
-            <p className="text-xs text-[#8a8299]">
-              OIL Central Well Vault • OCR Extracted Records • Cross-Well Dysfunction Corpus
-            </p>
-          </div>
+      <div className="bg-[#110d1e]/90 border border-[#8968bf]/[0.18] rounded-xl p-4 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+        <div>
+          <h2 className="text-base font-semibold text-white tracking-tight">
+            Historical Drilling Intelligence & Document Knowledge
+          </h2>
+          <p className="text-xs text-[#8a8299] mt-0.5">
+            OIL Central Well Vault • OCR Extracted Records • Cross-Well Dysfunction Corpus
+          </p>
         </div>
 
-        <span className="text-xs font-mono px-3 py-1 rounded-lg bg-amber-950/80 text-amber-300 border border-amber-800/60 shadow-sm">
-          5 Indexed PDFs • {allEvents.length} Historical Incidents
+        <span className="text-xs font-mono px-3 py-1 rounded-lg bg-[#551ca5]/20 text-[#8968bf] border border-[#8968bf]/[0.3] shadow-sm">
+          5 Indexed Documents • {allEvents.length} Historical Incidents
         </span>
       </div>
 
       {/* Indexed Documents Cards */}
       <div className="space-y-2">
-        <div className="text-xs font-bold uppercase text-[#cec9e1] tracking-wider flex items-center space-x-1.5">
-          <FileText className="w-4 h-4 text-[#8968bf]" />
-          <span>INDEXED HISTORICAL DRILLING REPORTS & OCR RECOVERY</span>
+        <div className="text-xs font-semibold text-[#8a8299] flex items-center space-x-1.5">
+          <span>Indexed Drilling Reports & OCR Extractions</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">

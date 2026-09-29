@@ -152,7 +152,7 @@ export function calculateRiskAssessment(telemetry: TelemetryPoint): RiskAssessme
     recommendation: {
       title: 'PACK-OFF / STUCK-PIPE PRECURSOR DETECTED',
       summary:
-        'NWIS predictive engines detect high risk of mechanical pipe sticking and annular pack-off in Kopili Shale within 3,205m–3,230m depth interval.',
+        'WellVista predictive engines detect high risk of mechanical pipe sticking and annular pack-off in Kopili Shale within 3,205m–3,230m depth interval.',
       workflowSteps: [
         '1. Immediately pick up drill string 2 meters off bottom',
         '2. Reduce Weight on Bit (WOB) and control ROP to 18–20 m/hr',

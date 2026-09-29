@@ -55,7 +55,7 @@ const FEATURES = [
   },
   {
     icon: Bot,
-    label: 'NWIS Copilot',
+    label: 'WellVista Copilot',
     desc: 'Context-aware AI assistant referencing live telemetry, formation, offset precedents and evidence weights to answer "why is this happening?" in natural language.',
     accent: '#8968bf',
   },
@@ -80,12 +80,12 @@ const FEATURES = [
 ];
 
 const FLOW_STEPS = [
-  { step: '01', title: 'NWIS watches live behaviour', body: 'Sensor stream from active rig OIL-ASSAM-042 ingested via simulated WITS/WITSML at 1 Hz across 14 channels.' },
+  { step: '01', title: 'WellVista watches live behaviour', body: 'Sensor stream from active rig OIL-ASSAM-042 ingested via simulated WITS/WITSML at 1 Hz across 14 channels.' },
   { step: '02', title: 'Historical wells are queried', body: 'Nearby offset wells in Dibrugarh basin are ranked by formation match, trajectory similarity, and structural correlation.' },
   { step: '03', title: 'Geological context applied', body: 'Current formation (Barail, Kopili, Sylhet) informs geomechanical risk profile and expected lithology behaviour.' },
   { step: '04', title: 'Physics engine diverges', body: 'First-principles model flags torque variance, SPP divergence and annular packing — independently from ML signals.' },
   { step: '05', title: 'Risk score escalates', body: 'Multi-evidence weighted H score crosses ELEVATED → CAUTION → CRITICAL thresholds with progressive UI feedback.' },
-  { step: '06', title: 'Human operator acts', body: 'Driller receives an evidence-backed advisory workflow. NWIS never controls equipment autonomously.' },
+  { step: '06', title: 'Human operator acts', body: 'Driller receives an evidence-backed advisory workflow. WellVista never controls equipment autonomously.' },
 ];
 
 const BADGES = ['STUCK_PIPE', 'MUD_LOSS', 'BOREHOLE_INSTABILITY', 'BIT_BHA_DYSFUNCTION', 'WELL_CONTROL', 'TRIPPING_PROBLEM', 'DIRECTIONAL_DYSFUNCTION'];
@@ -111,7 +111,7 @@ export default function LandingPage() {
               <Radio className="h-4 w-4 text-white" />
             </div>
             <div>
-              <span className="text-base font-bold tracking-widest text-white">NWIS</span>
+              <span className="text-base font-bold tracking-wide text-white">WellVista</span>
               <span
                 className="ml-2 rounded px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider"
                 style={{ background: 'rgba(137,104,191,0.2)', color: '#cec9e1', border: '1px solid rgba(137,104,191,0.3)' }}
@@ -176,7 +176,7 @@ export default function LandingPage() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-purple-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-purple-500" />
             </span>
-            Oil India Limited · eRTMAC Companion · Prototype Simulation
+            Oil India Limited · eRTMAC Companion · Subsurface Intelligence
           </div>
 
           {/* H1 */}
@@ -198,7 +198,7 @@ export default function LandingPage() {
             className="mx-auto mb-12 max-w-2xl text-lg"
             style={{ color: 'var(--nwis-text-secondary)', fontWeight: 300, lineHeight: 1.7 }}
           >
-            NWIS fuses live wellbore telemetry, nearby offset well history, geological formation intelligence,
+            WellVista fuses live wellbore telemetry, nearby offset well history, geological formation intelligence,
             and physics-first anomaly detection into a single advisory layer for the drilling engineer.
           </p>
 
@@ -336,7 +336,7 @@ export default function LandingPage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-bold uppercase tracking-widest" style={{ color: '#8968bf' }}>Intelligence Flow</p>
-            <h2 style={{ fontWeight: 300, color: '#f0edf8' }}>How NWIS predicts risk</h2>
+            <h2 style={{ fontWeight: 300, color: '#f0edf8' }}>How WellVista predicts risk</h2>
             <p className="mx-auto mt-4 max-w-xl text-base" style={{ color: 'var(--nwis-text-secondary)', fontWeight: 300 }}>
               A six-stage deterministic pipeline — from raw sensor ingestion to human-reviewed advisory — runs every simulation step.
             </p>
@@ -375,7 +375,7 @@ export default function LandingPage() {
             <p className="mb-3 text-xs font-bold uppercase tracking-widest" style={{ color: '#8968bf' }}>Multi-Factor Risk Model</p>
             <h2 style={{ fontWeight: 300, color: '#f0edf8' }}>Evidence Fusion Matrix</h2>
             <p className="mt-4 text-base leading-relaxed" style={{ color: 'var(--nwis-text-secondary)', fontWeight: 300 }}>
-              NWIS never produces a black-box alert. Every risk score is decomposed into six independently computed evidence streams,
+              WellVista never produces a black-box alert. Every risk score is decomposed into six independently computed evidence streams,
               each weighted and explained. Click any contribution to see its underlying sensor logs and historical citations.
             </p>
             <div className="mt-8 space-y-2">
@@ -459,7 +459,7 @@ export default function LandingPage() {
             <div>
               <h3 className="mb-1 text-base font-semibold" style={{ color: '#f0edf8' }}>ADVISORY — HUMAN DECISION REQUIRED</h3>
               <p className="max-w-lg text-sm" style={{ color: 'var(--nwis-text-secondary)', fontWeight: 300 }}>
-                NWIS operates exclusively as a drilling intelligence advisory layer. No equipment control is autonomous.
+                WellVista operates exclusively as a drilling intelligence advisory layer. No equipment control is autonomous.
                 Every recommendation requires human driller validation. Safety-critical decisions remain with the operator.
               </p>
             </div>
@@ -526,7 +526,7 @@ export default function LandingPage() {
             Ready to experience drilling foresight?
           </h2>
           <p className="mb-8 text-base" style={{ color: '#cec9e1', fontWeight: 300 }}>
-            Launch the NWIS prototype. Start the simulation. Drill into Kopili Shale. Watch the evidence build.
+            Launch the WellVista platform. Start the simulation. Drill into Kopili Shale. Watch the evidence build.
           </p>
           <Link
             href="/dashboard"
@@ -534,7 +534,7 @@ export default function LandingPage() {
             style={{ background: 'linear-gradient(135deg,#551ca5,#1c1469)', boxShadow: '0 0 40px rgba(85,28,165,0.4)' }}
           >
             <Radio className="h-5 w-5 animate-pulse" />
-            Launch NWIS Command Center
+            Launch WellVista Command Center
           </Link>
         </div>
       </section>
@@ -549,8 +549,8 @@ export default function LandingPage() {
             >
               <Radio className="h-3 w-3 text-white" />
             </div>
-            <span className="text-sm font-bold tracking-widest text-white">NWIS</span>
-            <span className="text-xs" style={{ color: 'var(--nwis-text-faint)' }}>Nearby Wells Intelligence System · Oil India Limited</span>
+            <span className="text-sm font-bold tracking-wide text-white">WellVista</span>
+            <span className="text-xs" style={{ color: 'var(--nwis-text-faint)' }}>Subsurface Intelligence & Decision Support · Oil India Limited</span>
           </div>
           <div className="flex items-center gap-4 text-xs" style={{ color: 'var(--nwis-text-faint)' }}>
             <span

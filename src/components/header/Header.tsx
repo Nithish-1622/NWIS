@@ -52,23 +52,16 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
             <div className="flex items-center gap-2">
               <span
-                className="text-sm font-extrabold tracking-widest"
+                className="text-sm font-extrabold tracking-wide"
                 style={{ color: '#cec9e1' }}
               >
-                NWIS
+                WellVista
               </span>
               <ArrowLeft className="h-3 w-3 opacity-0 group-hover:opacity-50 transition-opacity -ml-1" style={{ color: '#8968bf' }} />
             </div>
           </Link>
 
-          <div
-            className="hidden sm:flex items-center gap-1.5 rounded border px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest"
-            style={{ borderColor: 'rgba(137,104,191,0.35)', color: '#8968bf', background: 'rgba(85,28,165,0.15)' }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-            SIMULATION MODE
-          </div>
-
+         
           <span className="hidden md:block text-[10px]" style={{ color: 'rgba(137,104,191,0.5)' }}>
             Oil India Limited • eRTMAC Companion
           </span>

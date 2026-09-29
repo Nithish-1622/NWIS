@@ -31,23 +31,18 @@ export const FleetView: React.FC<FleetViewProps> = ({ onSelectRig }) => {
   return (
     <div className="space-y-4 text-[#f0edf8]">
       {/* Fleet Header Summary */}
-      <div className="bg-[#110d1e]/90 border border-[#8968bf]/[0.2] rounded-xl p-4 flex flex-wrap items-center justify-between gap-4 shadow-md">
-        <div className="flex items-center space-x-3">
-          <div className="p-2.5 rounded-xl bg-[#551ca5]/20 border border-[#8968bf]/[0.35] text-[#8968bf]">
-            <Grid className="w-6 h-6" />
-          </div>
-          <div>
-            <h2 className="text-sm font-bold text-white uppercase tracking-wider">
-              OIL INDIA LIMITED — FLEET INTELLIGENCE MONITOR
-            </h2>
-            <p className="text-xs text-[#8a8299]">
-              18 Active Rigs Across Upper Assam Basin • Real-Time eRTMAC Companion Fleet Stream
-            </p>
-          </div>
+      <div className="bg-[#110d1e]/90 border border-[#8968bf]/[0.18] rounded-xl p-4 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+        <div>
+          <h2 className="text-base font-semibold text-white tracking-tight">
+            Fleet Operations Monitor
+          </h2>
+          <p className="text-xs text-[#8a8299] mt-0.5">
+            18 Active Rigs Across Upper Assam Basin • Real-Time eRTMAC Companion Stream
+          </p>
         </div>
 
         {/* Status Counters */}
-        <div className="flex items-center space-x-2 text-xs font-mono">
+        <div className="flex items-center space-x-1.5 text-xs font-mono">
           <button
             onClick={() => setFilterStatus('ALL')}
             className={`px-3 py-1.5 rounded-lg border transition-all ${

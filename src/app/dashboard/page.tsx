@@ -18,7 +18,7 @@ import { DecisionSupportCard } from '@/components/decision-support/DecisionSuppo
 import { AgentPipelineDrawer } from '@/components/agents/AgentPipelineDrawer';
 import { getAgentsStatus } from '@/data/agents';
 
-export default function NWISApp() {
+export default function WellVistaApp() {
   const [activeView, setActiveView] = useState<NavView>('command-center');
   const [activeDocumentId, setActiveDocumentId] = useState<string | null>(null);
 
