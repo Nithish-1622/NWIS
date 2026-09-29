@@ -55,12 +55,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <aside className="w-64 bg-slate-950/95 border-r border-slate-800/80 flex flex-col justify-between p-3 select-none z-30 shrink-0">
+    <aside
+      className="w-64 flex flex-col justify-between p-3 select-none z-30 shrink-0"
+      style={{
+        background: 'rgba(10,8,18,0.96)',
+        borderRight: '1px solid rgba(137,104,191,0.15)',
+      }}
+    >
       {/* Navigation Links */}
       <div className="space-y-1">
-        <div className="px-3 py-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase flex items-center justify-between">
+        <div
+          className="px-3 py-2 text-[10px] font-bold tracking-widest uppercase flex items-center justify-between"
+          style={{ color: 'rgba(90,85,130,0.7)' }}
+        >
           <span>NAVIGATION</span>
-          <span className="text-cyan-400 font-mono text-[9px]">eRTMAC v2.4</span>
+          <span className="font-mono text-[9px]" style={{ color: '#8968bf' }}>eRTMAC v2.4</span>
         </div>
 
         {navItems.map((item) => {
@@ -72,34 +81,62 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <button
               key={item.id}
               onClick={() => onSelectView(item.id)}
-              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium transition-all duration-150 group ${
-                isActive
-                  ? 'bg-gradient-to-r from-cyan-950/80 to-slate-900 text-cyan-300 border border-cyan-500/40 shadow-sm shadow-cyan-950'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60 border border-transparent'
-              }`}
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium transition-all duration-150 group"
+              style={{
+                background: isActive
+                  ? 'linear-gradient(90deg, rgba(85,28,165,0.25), rgba(28,20,105,0.2))'
+                  : 'transparent',
+                border: isActive
+                  ? '1px solid rgba(137,104,191,0.35)'
+                  : '1px solid transparent',
+                color: isActive ? '#cec9e1' : 'rgba(137,104,191,0.6)',
+              }}
+              onMouseEnter={(e) => {
+                if (!isActive) {
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(85,28,165,0.1)';
+                  (e.currentTarget as HTMLElement).style.color = '#cec9e1';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive) {
+                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                  (e.currentTarget as HTMLElement).style.color = 'rgba(137,104,191,0.6)';
+                }
+              }}
             >
               <div className="flex items-center space-x-2.5">
-                <Icon
-                  className={`w-4 h-4 transition-colors ${
-                    isActive
-                      ? 'text-cyan-400'
+                <span
+                  style={{
+                    color: isActive
+                      ? '#8968bf'
                       : isAlertItem
-                      ? 'text-red-400 animate-pulse'
-                      : 'text-slate-500 group-hover:text-slate-300'
-                  }`}
-                />
+                      ? '#ef4444'
+                      : 'inherit',
+                  }}
+                >
+                  <Icon className="w-4 h-4" />
+                </span>
                 <span className="font-semibold tracking-wide">{item.label}</span>
               </div>
 
               {item.badge !== undefined && (
                 <span
-                  className={`text-[10px] font-mono px-1.5 py-0.5 rounded border font-bold ${
-                    isAlertItem
-                      ? 'bg-red-500/30 text-red-300 border-red-500/50 animate-pulse'
+                  className="text-[10px] font-mono px-1.5 py-0.5 rounded font-bold"
+                  style={{
+                    background: isAlertItem
+                      ? 'rgba(239,68,68,0.2)'
                       : isActive
-                      ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40'
-                      : 'bg-slate-900 text-slate-400 border-slate-800'
-                  }`}
+                      ? 'rgba(137,104,191,0.2)'
+                      : 'rgba(28,20,105,0.4)',
+                    color: isAlertItem
+                      ? '#f87171'
+                      : isActive
+                      ? '#8968bf'
+                      : 'rgba(90,85,130,0.8)',
+                    border: isAlertItem
+                      ? '1px solid rgba(239,68,68,0.3)'
+                      : '1px solid rgba(137,104,191,0.2)',
+                  }}
                 >
                   {item.badge}
                 </span>
@@ -109,26 +146,43 @@ export const Sidebar: React.FC<SidebarProps> = ({
         })}
       </div>
 
-      {/* Human-in-the-loop Advisory Banner */}
+      {/* Bottom panels */}
       <div className="mt-4 space-y-3">
-        <div className="bg-gradient-to-b from-amber-950/40 to-slate-900/90 border border-amber-500/30 rounded-lg p-3 text-xs shadow-inner">
-          <div className="flex items-center space-x-1.5 text-amber-400 font-bold mb-1 text-[11px] uppercase tracking-wider">
-            <ShieldCheck className="w-4 h-4 shrink-0 text-amber-400" />
+        {/* Human-in-the-loop Advisory Banner */}
+        <div
+          className="rounded-lg p-3 text-xs"
+          style={{
+            background: 'linear-gradient(180deg, rgba(85,28,165,0.15), rgba(10,8,18,0.8))',
+            border: '1px solid rgba(137,104,191,0.25)',
+          }}
+        >
+          <div
+            className="flex items-center space-x-1.5 font-bold mb-1 text-[11px] uppercase tracking-wider"
+            style={{ color: '#8968bf' }}
+          >
+            <ShieldCheck className="w-4 h-4 shrink-0" />
             <span>HUMAN-IN-THE-LOOP</span>
           </div>
-          <p className="text-[10px] text-slate-300 leading-relaxed font-medium">
-            NWIS operates as an <strong className="text-amber-300">advisory intelligence layer</strong>. All operational decisions & control adjustments require human driller validation.
+          <p className="text-[10px] leading-relaxed font-medium" style={{ color: '#cec9e1' }}>
+            NWIS operates as an <strong style={{ color: '#8968bf' }}>advisory intelligence layer</strong>. All operational decisions require human driller validation.
           </p>
         </div>
 
-        {/* Value Proposition Footer */}
-        <div className="p-2.5 rounded-md bg-slate-900/60 border border-slate-800/80 text-[10px] text-slate-400 font-mono space-y-1">
-          <div className="text-cyan-400 font-bold tracking-tight text-[10px] flex items-center space-x-1">
-            <Zap className="w-3 h-3 text-cyan-400" />
+        {/* Value Proposition */}
+        <div
+          className="p-2.5 rounded-md text-[10px] font-mono space-y-1"
+          style={{
+            background: 'rgba(28,20,105,0.2)',
+            border: '1px solid rgba(137,104,191,0.15)',
+            color: 'rgba(206,201,225,0.5)',
+          }}
+        >
+          <div className="font-bold tracking-tight text-[10px] flex items-center space-x-1" style={{ color: '#8968bf' }}>
+            <Zap className="w-3 h-3" />
             <span>CORE FORMULA</span>
           </div>
-          <p className="text-slate-300 leading-tight">
-            PAST WELLS + LIVE SENSORS + GEOLOGY = <span className="text-cyan-300 font-bold">FORESIGHT</span>
+          <p style={{ color: '#cec9e1' }}>
+            PAST WELLS + LIVE SENSORS + GEOLOGY = <span className="font-bold" style={{ color: '#8968bf' }}>FORESIGHT</span>
           </p>
         </div>
       </div>
