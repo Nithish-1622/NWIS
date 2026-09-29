@@ -70,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           <span className="hidden md:block text-[10px]" style={{ color: 'rgba(137,104,191,0.5)' }}>
-            Oil India Limited · eRTMAC Companion
+            Oil India Limited • eRTMAC Companion
           </span>
         </div>
 
@@ -198,3 +198,4 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
+

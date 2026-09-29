@@ -110,12 +110,13 @@ export default function NWISApp() {
 
           {activeView === 'live-simulation' && (
             <div className="space-y-4">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex items-center justify-between">
+              <div className="bg-[#15112a]/90 border border-[#8968bf]/[0.25] rounded-xl p-4 flex items-center justify-between shadow-lg">
                 <div>
-                  <h2 className="text-base font-bold text-white uppercase tracking-wide">
-                    LIVE DRILLING TELEMETRY SIMULATION & HAZARD MONITOR
+                  <h2 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    <span>Live Drilling Telemetry Simulation & Hazard Monitor</span>
                   </h2>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-[#8a8299] mt-0.5">
                     Step {simulation.currentStepIndex + 1} of {simulation.totalSteps} • Depth {telemetry.depth} m ({telemetry.formation})
                   </p>
                 </div>
@@ -123,21 +124,21 @@ export default function NWISApp() {
                   {isPlaying ? (
                     <button
                       onClick={pause}
-                      className="px-4 py-1.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold"
+                      className="px-4 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold hover:bg-amber-500/30 transition"
                     >
                       PAUSE SIMULATION
                     </button>
                   ) : (
                     <button
                       onClick={start}
-                      className="px-4 py-1.5 rounded bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold"
+                      className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#551ca5] to-[#3d2aab] hover:from-[#7040c8] hover:to-[#551ca5] text-white text-xs font-bold transition shadow-md shadow-[#551ca5]/30"
                     >
                       START SIMULATION
                     </button>
                   )}
                   <button
                     onClick={fastForward}
-                    className="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold font-mono"
+                    className="px-3 py-1.5 rounded-lg bg-[#1c1469]/50 hover:bg-[#1c1469] border border-[#8968bf]/[0.35] text-amber-300 text-xs font-bold font-mono transition"
                   >
                     HAZARD PRESET (STEP 52)
                   </button>
@@ -206,3 +207,4 @@ export default function NWISApp() {
     </div>
   );
 }
+
