@@ -27,18 +27,18 @@ export const RiskEvidenceView: React.FC<RiskEvidenceViewProps> = ({
         className={`p-4 rounded-xl border ${getRiskColor(riskAssessment.level)} transition-all duration-300 shadow-xl backdrop-blur-sm`}
       >
         <div className="flex flex-wrap items-start justify-between gap-3">
-          <div className="flex items-start space-x-3.5">
-            <div className="p-2.5 rounded-xl bg-red-500/20 border border-red-500/40 text-red-400 shrink-0 shadow-md">
-              <ShieldAlert className="w-6 h-6 animate-pulse" />
+          <div className="flex items-start space-x-3">
+            <div className="p-2 rounded-lg bg-red-500/20 border border-red-500/40 text-red-400 shrink-0 mt-0.5">
+              <ShieldAlert className="w-5 h-5 animate-pulse" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <span className="font-mono text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/40">
-                  PREDICTIVE DRILLING RISK
+                <span className="font-mono text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/40">
+                  Predictive Hazard Advisory
                 </span>
                 <span className="text-xs text-[#8a8299] font-mono">ID #HAZ-2026-042</span>
               </div>
-              <h2 className="text-lg font-bold text-white tracking-wide mt-1">
+              <h2 className="text-base font-bold text-white tracking-tight mt-1">
                 {riskAssessment.recommendation.title}
               </h2>
               <p className="text-xs text-[#cec9e1] mt-1 max-w-2xl leading-relaxed">
@@ -50,20 +50,20 @@ export const RiskEvidenceView: React.FC<RiskEvidenceViewProps> = ({
           {/* Quick Metrics */}
           <div className="flex items-center space-x-2 bg-[#0a0812]/80 p-2.5 rounded-xl border border-[#8968bf]/[0.2] text-xs font-mono shadow-inner">
             <div className="text-center px-3 border-r border-[#8968bf]/[0.15]">
-              <div className="text-[10px] text-[#8a8299] uppercase font-semibold">RISK SCORE</div>
-              <div className="text-xl font-black text-red-400 mt-0.5">{Math.round(riskAssessment.score * 100)}%</div>
+              <div className="text-[10px] text-[#8a8299] uppercase font-semibold">Risk Score</div>
+              <div className="text-lg font-black text-red-400 mt-0.5">{Math.round(riskAssessment.score * 100)}%</div>
             </div>
             <div className="text-center px-3 border-r border-[#8968bf]/[0.15]">
-              <div className="text-[10px] text-[#8a8299] uppercase font-semibold">CONFIDENCE</div>
-              <div className="text-xl font-black text-[#8968bf] mt-0.5">{riskAssessment.confidence}%</div>
+              <div className="text-[10px] text-[#8a8299] uppercase font-semibold">Confidence</div>
+              <div className="text-lg font-black text-[#8968bf] mt-0.5">{riskAssessment.confidence}%</div>
             </div>
             <div className="text-center px-3 border-r border-[#8968bf]/[0.15]">
-              <div className="text-[10px] text-[#8a8299] uppercase font-semibold">EST. ONSET</div>
-              <div className="text-xl font-black text-amber-300 mt-0.5">{riskAssessment.horizonMinutes}m</div>
+              <div className="text-[10px] text-[#8a8299] uppercase font-semibold">Est. Onset</div>
+              <div className="text-lg font-black text-amber-300 mt-0.5">{riskAssessment.horizonMinutes}m</div>
             </div>
             <div className="text-center px-3">
-              <div className="text-[10px] text-[#8a8299] uppercase font-semibold">EXPECTED DEPTH</div>
-              <div className="text-sm font-bold text-[#cec9e1] mt-1">
+              <div className="text-[10px] text-[#8a8299] uppercase font-semibold">Expected Depth</div>
+              <div className="text-xs font-bold text-[#cec9e1] mt-1">
                 {riskAssessment.expectedDepthMin}–{riskAssessment.expectedDepthMax} m
               </div>
             </div>
@@ -71,26 +71,26 @@ export const RiskEvidenceView: React.FC<RiskEvidenceViewProps> = ({
         </div>
 
         {/* Primary Evidence Checklist */}
-        <div className="mt-4 pt-3 border-t border-[#8968bf]/[0.15]">
-          <div className="text-[11px] font-bold text-[#8a8299] uppercase tracking-wider mb-2 flex items-center space-x-1.5">
+        <div className="mt-3.5 pt-3 border-t border-[#8968bf]/[0.15]">
+          <div className="text-[10px] font-bold text-[#8a8299] uppercase tracking-wider mb-2 flex items-center space-x-1.5">
             <Info className="w-3.5 h-3.5 text-[#8968bf]" />
-            <span>PRIMARY VERIFIED EVIDENCE FACTORS</span>
+            <span>Verified Physical & Offset Evidence Signatures</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
-            <div className="flex items-center space-x-2 bg-[#15112a]/80 px-3 py-2 rounded-lg border border-[#8968bf]/[0.2]">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="flex items-center space-x-2 bg-[#15112a]/80 px-3 py-1.5 rounded-lg border border-[#8968bf]/[0.2]">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               <span className="text-[#cec9e1]">Torque variance increasing (+5.2 kN·m volatility)</span>
             </div>
-            <div className="flex items-center space-x-2 bg-[#15112a]/80 px-3 py-2 rounded-lg border border-[#8968bf]/[0.2]">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="flex items-center space-x-2 bg-[#15112a]/80 px-3 py-1.5 rounded-lg border border-[#8968bf]/[0.2]">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               <span className="text-[#cec9e1]">Standpipe pressure divergence (+240 psi spike)</span>
             </div>
-            <div className="flex items-center space-x-2 bg-[#15112a]/80 px-3 py-2 rounded-lg border border-[#8968bf]/[0.2]">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="flex items-center space-x-2 bg-[#15112a]/80 px-3 py-1.5 rounded-lg border border-[#8968bf]/[0.2]">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               <span className="text-[#cec9e1]">ROP degradation decay (38 → 14 m/hr)</span>
             </div>
-            <div className="flex items-center space-x-2 bg-[#15112a]/80 px-3 py-2 rounded-lg border border-[#8968bf]/[0.2]">
-              <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+            <div className="flex items-center space-x-2 bg-[#15112a]/80 px-3 py-1.5 rounded-lg border border-[#8968bf]/[0.2]">
+              <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
               <span className="text-[#cec9e1]">Similar stuck-pipe pattern in 3 offset wells (OIL-041, 039, 043)</span>
             </div>
           </div>
@@ -98,19 +98,19 @@ export const RiskEvidenceView: React.FC<RiskEvidenceViewProps> = ({
       </div>
 
       {/* Interactive Evidence Fusion Matrix */}
-      <div className="bg-[#15112a]/90 border border-[#8968bf]/[0.18] rounded-xl p-4">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-[#110d1e]/90 border border-[#8968bf]/[0.2] rounded-xl p-4 shadow-md">
+        <div className="flex items-center justify-between mb-3.5">
           <div>
-            <h3 className="text-sm font-bold text-[#f0edf8] uppercase tracking-wide flex items-center space-x-2">
+            <h3 className="text-sm font-bold text-[#f0edf8] tracking-wide flex items-center space-x-2">
               <Layers className="w-4 h-4 text-[#8968bf]" />
-              <span>Multi-Factor Evidence Fusion Matrix ("Why This Alert?")</span>
+              <span>Multi-Factor Evidence Fusion Matrix</span>
             </h3>
             <p className="text-xs text-[#8a8299] mt-0.5">
-              Weighted integration of physics, geology, machine learning, and historical precedent.
+              Weighted integration of mechanical physics, formation stratigraphy, ML inference, and historical offset precedent.
             </p>
           </div>
-          <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#1c1469]/60 text-[#a98fda] border border-[#8968bf]/[0.3]">
-            H_hazard = Weighted Consensus
+          <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#1c1469]/80 text-[#8968bf] border border-[#8968bf]/[0.35]">
+            Consensus Algorithm: Active
           </span>
         </div>
 

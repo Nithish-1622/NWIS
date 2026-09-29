@@ -36,25 +36,25 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
     <div className="space-y-4 text-[#f0edf8]">
       {/* Top Filter & Radar Controls */}
       <div className="bg-[#110d1e]/90 border border-[#8968bf]/[0.2] rounded-xl p-3.5 flex flex-wrap items-center justify-between gap-3 shadow-md">
-        <div className="flex items-center space-x-3">
-          <div className="p-2 rounded-lg bg-[#551ca5]/20 border border-[#8968bf]/[0.35] text-[#8968bf]">
-            <Radio className="w-5 h-5 animate-pulse" />
-          </div>
-          <div>
-            <h2 className="text-sm font-bold text-white uppercase tracking-wider flex items-center space-x-2">
-              <span>GEOSPATIAL DRILLING RADAR & OFFSET DISCOVERY</span>
+        <div>
+          <div className="flex items-center space-x-2">
+            <h2 className="text-sm font-bold text-white tracking-wide">
+              Subsurface Geospatial Offset Discovery
             </h2>
-            <p className="text-xs text-[#8a8299]">
-              Dibrugarh Structural Basin • Active Rig OIL-ASSAM-042 Offset Intelligence
-            </p>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1c1469]/80 text-[#8968bf] border border-[#8968bf]/[0.35]">
+              Dibrugarh Basin GIS
+            </span>
           </div>
+          <p className="text-xs text-[#8a8299] mt-0.5">
+            Radial Search Matrix • Center: OIL-ASSAM-042 (27.48°N, 94.92°E) • Fault Trend: N45E Structural Dip
+          </p>
         </div>
 
         {/* Radius Filter Buttons */}
         <div className="flex items-center space-x-1.5 bg-[#0a0812] p-1 rounded-lg border border-[#8968bf]/[0.2] text-xs">
           <span className="text-[#8a8299] px-2 font-mono text-[11px] flex items-center space-x-1 font-semibold">
             <Sliders className="w-3.5 h-3.5 text-[#8968bf]" />
-            <span>RADIUS:</span>
+            <span>Search Radius:</span>
           </span>
           {radii.map((r) => (
             <button
