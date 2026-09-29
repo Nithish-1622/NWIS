@@ -9,26 +9,26 @@ export function cn(...inputs: ClassValue[]) {
 export function getRiskColor(level: RiskLevel): string {
   switch (level) {
     case 'NORMAL':
-      return 'text-emerald-400 bg-emerald-950/60 border-emerald-800/60 shadow-emerald-900/20';
+      return 'text-emerald-400 bg-emerald-950/40 border-emerald-800/40';
     case 'ELEVATED':
-      return 'text-amber-400 bg-amber-950/60 border-amber-800/60 shadow-amber-900/20';
+      return 'text-amber-400 bg-amber-950/40 border-amber-700/40';
     case 'CAUTION':
-      return 'text-orange-400 bg-orange-950/60 border-orange-800/60 shadow-orange-900/20';
+      return 'text-orange-400 bg-orange-950/40 border-orange-700/40';
     case 'CRITICAL':
-      return 'text-red-400 bg-red-950/60 border-red-800/60 shadow-red-900/40 animate-pulse';
+      return 'text-red-400 bg-red-950/50 border-red-700/50 animate-critical';
   }
 }
 
 export function getRiskBadgeColor(level: RiskLevel): string {
   switch (level) {
     case 'NORMAL':
-      return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40';
+      return 'bg-emerald-500/15 text-emerald-300 border-emerald-600/30';
     case 'ELEVATED':
-      return 'bg-amber-500/20 text-amber-300 border-amber-500/40';
+      return 'bg-amber-500/15 text-amber-300 border-amber-600/30';
     case 'CAUTION':
-      return 'bg-orange-500/20 text-orange-300 border-orange-500/40';
+      return 'bg-orange-500/15 text-orange-300 border-orange-600/30';
     case 'CRITICAL':
-      return 'bg-red-500/25 text-red-300 border-red-500/50 animate-pulse';
+      return 'bg-red-500/20 text-red-300 border-red-600/40 animate-critical';
   }
 }
 

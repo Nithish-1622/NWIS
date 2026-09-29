@@ -33,37 +33,37 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
   const svgScale = 240 / maxViewRadius;
 
   return (
-    <div className="space-y-4 text-slate-100">
+    <div className="space-y-4 text-[#f0edf8]">
       {/* Top Filter & Radar Controls */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 flex flex-wrap items-center justify-between gap-3 shadow-md">
+      <div className="bg-[#110d1e]/90 border border-[#8968bf]/[0.2] rounded-xl p-3.5 flex flex-wrap items-center justify-between gap-3 shadow-md">
         <div className="flex items-center space-x-3">
-          <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+          <div className="p-2 rounded-lg bg-[#551ca5]/20 border border-[#8968bf]/[0.35] text-[#8968bf]">
             <Radio className="w-5 h-5 animate-pulse" />
           </div>
           <div>
             <h2 className="text-sm font-bold text-white uppercase tracking-wider flex items-center space-x-2">
               <span>GEOSPATIAL DRILLING RADAR & OFFSET DISCOVERY</span>
             </h2>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-[#8a8299]">
               Dibrugarh Structural Basin • Active Rig OIL-ASSAM-042 Offset Intelligence
             </p>
           </div>
         </div>
 
         {/* Radius Filter Buttons */}
-        <div className="flex items-center space-x-2 bg-slate-950 p-1 rounded-lg border border-slate-800 text-xs">
-          <span className="text-slate-400 px-2 font-mono text-[11px] flex items-center space-x-1">
-            <Sliders className="w-3.5 h-3.5 text-cyan-400" />
+        <div className="flex items-center space-x-1.5 bg-[#0a0812] p-1 rounded-lg border border-[#8968bf]/[0.2] text-xs">
+          <span className="text-[#8a8299] px-2 font-mono text-[11px] flex items-center space-x-1 font-semibold">
+            <Sliders className="w-3.5 h-3.5 text-[#8968bf]" />
             <span>RADIUS:</span>
           </span>
           {radii.map((r) => (
             <button
               key={r}
               onClick={() => onSelectRadiusFilter(r)}
-              className={`px-2.5 py-1 rounded font-mono font-bold transition ${
+              className={`px-2.5 py-1 rounded-md font-mono font-bold transition ${
                 radiusFilter === r
-                  ? 'bg-cyan-500/30 text-cyan-300 border border-cyan-500/50 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-[#551ca5]/40 text-[#f0edf8] border border-[#8968bf]/[0.5] shadow-sm'
+                  : 'text-[#8a8299] hover:text-[#cec9e1] hover:bg-[#1c1469]/30'
               }`}
             >
               {r >= 1000 ? `${r / 1000} km` : `${r} m`}
@@ -75,17 +75,17 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
       {/* Main Grid: Geospatial Map Canvas + Intelligence Panel */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Radar Map Canvas Container */}
-        <div className="lg:col-span-7 bg-slate-950/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden flex flex-col justify-between min-h-[460px] shadow-xl">
+        <div className="lg:col-span-7 bg-[#0a0812]/95 border border-[#8968bf]/[0.2] rounded-xl p-4 relative overflow-hidden flex flex-col justify-between min-h-[460px] shadow-xl">
           {/* Tactical Grid Background Overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(137,104,191,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(137,104,191,0.06)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
           {/* Radar Header Info */}
-          <div className="flex items-center justify-between text-xs font-mono text-slate-400 z-10">
+          <div className="flex items-center justify-between text-xs font-mono text-[#8a8299] z-10">
             <div className="flex items-center space-x-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>RADAR CENTER: ACTIVE RIG OIL-ASSAM-042</span>
+              <span className="text-[#cec9e1] font-semibold">RADAR CENTER: ACTIVE RIG OIL-ASSAM-042</span>
             </div>
-            <span>FAULT TREND: N45E STRUCTURAL DIP</span>
+            <span className="text-[#8968bf] font-medium">FAULT TREND: N45E STRUCTURAL DIP</span>
           </div>
 
           {/* SVG Map Canvas */}
@@ -146,18 +146,16 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
 
               {/* ACTIVE WELL PIN (Center) */}
               <g transform={`translate(${svgCenter}, ${svgCenter})`}>
-                <circle r="14" fill="#06b6d4" fillOpacity="0.2" className="animate-ping" />
-                <circle r="8" fill="#0284c7" stroke="#38bdf8" strokeWidth="2" />
+                <circle r="14" fill="#8968bf" fillOpacity="0.25" className="animate-ping" />
+                <circle r="8" fill="#551ca5" stroke="#8968bf" strokeWidth="2" />
                 <circle r="3" fill="#ffffff" />
-                <text x="12" y="4" fill="#38bdf8" fontSize="11" fontWeight="bold" fontFamily="monospace">
+                <text x="12" y="4" fill="#cec9e1" fontSize="11" fontWeight="bold" fontFamily="monospace">
                   OIL-ASSAM-042 (ACTIVE)
                 </text>
               </g>
 
               {/* OFFSET WELL PINS */}
               {allOffsetWells.map((well) => {
-                // Approximate coordinate offset conversion for visualization canvas
-                // Northing maps to -Y, Easting maps to +X
                 const xOffset = well.trajectory[well.trajectory.length - 1].easting;
                 const yOffset = -well.trajectory[well.trajectory.length - 1].northing;
 
@@ -178,14 +176,14 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
                   >
                     {/* Pulsing ring for high relevance offset */}
                     {well.relevanceScore > 90 && isWithinRadius && (
-                      <circle r="12" fill={hasStuckPipe ? '#ef4444' : '#f59e0b'} fillOpacity="0.25" className="animate-pulse" />
+                      <circle r="12" fill={hasStuckPipe ? '#ef4444' : '#8968bf'} fillOpacity="0.25" className="animate-pulse" />
                     )}
 
                     {/* Well Dot */}
                     <circle
                       r={isSelected ? '9' : '6'}
-                      fill={hasStuckPipe ? '#ef4444' : '#f59e0b'}
-                      stroke={isSelected ? '#ffffff' : '#090d16'}
+                      fill={hasStuckPipe ? '#ef4444' : '#a98fda'}
+                      stroke={isSelected ? '#ffffff' : '#0a0812'}
                       strokeWidth="2"
                     />
 
@@ -195,7 +193,7 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
                       y1="0"
                       x2={svgCenter - cx}
                       y2={svgCenter - cy}
-                      stroke={isSelected ? '#38bdf8' : '#334155'}
+                      stroke={isSelected ? '#8968bf' : 'rgba(137,104,191,0.25)'}
                       strokeWidth={isSelected ? '1.5' : '0.8'}
                       strokeDasharray="2 2"
                     />
@@ -207,15 +205,15 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
                       width="110"
                       height="24"
                       rx="4"
-                      fill="#090d16"
-                      fillOpacity="0.9"
-                      stroke={isSelected ? '#38bdf8' : '#334155'}
+                      fill="#110d1e"
+                      fillOpacity="0.95"
+                      stroke={isSelected ? '#8968bf' : 'rgba(137,104,191,0.3)'}
                       strokeWidth="1"
                     />
-                    <text x="14" y="-1" fill="#f8fafc" fontSize="10" fontWeight="bold" fontFamily="monospace">
+                    <text x="14" y="-1" fill="#f0edf8" fontSize="10" fontWeight="bold" fontFamily="monospace">
                       {well.name.split(' ')[0]}
                     </text>
-                    <text x="14" y="9" fill={well.relevanceScore > 90 ? '#38bdf8' : '#94a3b8'} fontSize="9" fontFamily="monospace">
+                    <text x="14" y="9" fill={well.relevanceScore > 90 ? '#8968bf' : '#8a8299'} fontSize="9" fontFamily="monospace">
                       {well.distance}m • Match {well.relevanceScore}%
                     </text>
                   </g>
@@ -225,10 +223,10 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
           </div>
 
           {/* Compass & Map Legend Footer */}
-          <div className="flex items-center justify-between pt-2 border-t border-slate-800/80 text-[11px] text-slate-400 font-mono z-10">
+          <div className="flex items-center justify-between pt-2 border-t border-[#8968bf]/[0.15] text-[11px] text-[#8a8299] font-mono z-10">
             <div className="flex items-center space-x-3">
               <span className="flex items-center space-x-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 inline-block" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#8968bf] inline-block" />
                 <span>Active Well</span>
               </span>
               <span className="flex items-center space-x-1">
@@ -240,8 +238,8 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
                 <span>Mud Loss Incident</span>
               </span>
             </div>
-            <div className="flex items-center space-x-1 text-slate-400">
-              <Compass className="w-4 h-4 text-cyan-400" />
+            <div className="flex items-center space-x-1 text-[#8a8299]">
+              <Compass className="w-4 h-4 text-[#8968bf]" />
               <span>NORTH (GRID)</span>
             </div>
           </div>
@@ -255,12 +253,12 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
               onOpenDocument={onOpenDocument}
             />
           ) : (
-            <div className="h-full bg-slate-950/80 border border-slate-800 rounded-xl p-8 flex flex-col items-center justify-center text-center text-slate-400">
-              <MapPin className="w-12 h-12 text-slate-600 mb-3" />
-              <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
+            <div className="h-full bg-[#0a0812]/80 border border-[#8968bf]/[0.18] rounded-xl p-8 flex flex-col items-center justify-center text-center text-[#8a8299]">
+              <MapPin className="w-12 h-12 text-[#5a5582] mb-3" />
+              <h3 className="text-sm font-bold text-[#cec9e1] uppercase tracking-wider">
                 Select an Offset Well
               </h3>
-              <p className="text-xs text-slate-400 mt-1 max-w-xs">
+              <p className="text-xs text-[#8a8299] mt-1 max-w-xs">
                 Click any offset well pin on the radar map to inspect its geological match, historical dysfunctions, and linked reports.
               </p>
             </div>
@@ -270,3 +268,5 @@ export const NearbyWellsView: React.FC<NearbyWellsViewProps> = ({
     </div>
   );
 };
+
+

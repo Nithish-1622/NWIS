@@ -53,48 +53,51 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
   const agents = getAgentsStatus(telemetry, riskAssessment);
 
   return (
-    <div className="space-y-4 text-slate-100">
+    <div className="space-y-4 text-[#f0edf8]">
       {/* 1. Hero Active Rig Operational Status Banner */}
-      <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 rounded-xl p-4 shadow-xl">
+      <div className="bg-[#110d1e]/90 border border-[#8968bf]/[0.25] rounded-xl p-4 shadow-xl backdrop-blur-sm relative overflow-hidden">
+        {/* Subtle accent glow top border */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#8968bf] to-transparent opacity-60" />
+
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-600 to-blue-700 p-0.5 shadow-lg shadow-cyan-950 flex items-center justify-center">
-              <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                <Radio className="w-6 h-6 text-cyan-400 animate-pulse" />
+          <div className="flex items-center space-x-3.5">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#551ca5] to-[#1c1469] p-0.5 shadow-lg shadow-[#551ca5]/30 flex items-center justify-center shrink-0">
+              <div className="w-full h-full bg-[#0a0812] rounded-[10px] flex items-center justify-center">
+                <Radio className="w-6 h-6 text-[#8968bf] animate-pulse" />
               </div>
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <h1 className="text-lg font-black text-white tracking-wide">
-                  ACTIVE RIG: <span className="text-cyan-400">{activeWell.rigName}</span>
+                <h1 className="text-lg font-black text-[#f0edf8] tracking-wide">
+                  ACTIVE RIG: <span className="text-[#8968bf]">{activeWell.rigName}</span>
                 </h1>
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#1c1469]/80 text-[#cec9e1] border border-[#8968bf]/[0.4]">
                   {activeWell.field}
                 </span>
               </div>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Well: <strong className="text-slate-200">{activeWell.name}</strong> • Target Depth: 3,850 m • Lat: {activeWell.latitude}°N, Long: {activeWell.longitude}°E
+              <p className="text-xs text-[#8a8299] mt-0.5">
+                Well: <strong className="text-[#cec9e1]">{activeWell.name}</strong> • Target Depth: 3,850 m • Lat: {activeWell.latitude}°N, Long: {activeWell.longitude}°E
               </p>
             </div>
           </div>
 
           {/* Key Metric Gauges */}
           <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-            <div className="bg-slate-950/80 px-3 py-2 rounded-lg border border-slate-800 text-center">
-              <div className="text-[10px] text-slate-400 uppercase">MEASURED DEPTH</div>
-              <div className="text-xl font-bold text-cyan-300">{telemetry.depth} m</div>
+            <div className="bg-[#0a0812]/90 px-3.5 py-2 rounded-lg border border-[#8968bf]/[0.2] text-center shadow-inner">
+              <div className="text-[10px] text-[#8a8299] uppercase tracking-wider font-semibold">MEASURED DEPTH</div>
+              <div className="text-xl font-bold text-[#cec9e1] mt-0.5">{telemetry.depth} m</div>
             </div>
 
-            <div className="bg-slate-950/80 px-3 py-2 rounded-lg border border-slate-800 text-center">
-              <div className="text-[10px] text-slate-400 uppercase">FORMATION</div>
-              <div className={`text-sm font-bold mt-0.5 ${telemetry.formation === 'Kopili Shale' ? 'text-red-400' : 'text-purple-300'}`}>
+            <div className="bg-[#0a0812]/90 px-3.5 py-2 rounded-lg border border-[#8968bf]/[0.2] text-center shadow-inner">
+              <div className="text-[10px] text-[#8a8299] uppercase tracking-wider font-semibold">FORMATION</div>
+              <div className={`text-sm font-bold mt-1 ${telemetry.formation === 'Kopili Shale' ? 'text-red-400' : 'text-[#8968bf]'}`}>
                 {telemetry.formation}
               </div>
             </div>
 
-            <div className="bg-slate-950/80 px-3 py-2 rounded-lg border border-slate-800 text-center">
-              <div className="text-[10px] text-slate-400 uppercase">PREDICTIVE HAZARD</div>
-              <div className={`text-xs font-bold px-2.5 py-1 rounded border uppercase mt-0.5 ${getRiskBadgeColor(riskAssessment.level)}`}>
+            <div className="bg-[#0a0812]/90 px-3.5 py-2 rounded-lg border border-[#8968bf]/[0.2] text-center shadow-inner">
+              <div className="text-[10px] text-[#8a8299] uppercase tracking-wider font-semibold">PREDICTIVE HAZARD</div>
+              <div className={`text-xs font-bold px-2.5 py-1 rounded-md border uppercase mt-1 ${getRiskBadgeColor(riskAssessment.level)}`}>
                 {riskAssessment.level} ({Math.round(riskAssessment.score * 100)}%)
               </div>
             </div>
@@ -125,14 +128,14 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
 
       {/* 3. Live Telemetry Suite */}
       <div className="space-y-2">
-        <div className="flex items-center justify-between text-xs font-bold text-slate-300 uppercase tracking-wider">
+        <div className="flex items-center justify-between text-xs font-bold text-[#cec9e1] uppercase tracking-wider">
           <span className="flex items-center space-x-1.5">
-            <Activity className="w-4 h-4 text-cyan-400" />
+            <Activity className="w-4 h-4 text-[#8968bf]" />
             <span>REAL-TIME TELEMETRY CHANNELS (WITSML STREAM)</span>
           </span>
           <button
             onClick={() => onNavigateView('live-simulation')}
-            className="text-[11px] text-cyan-400 hover:underline font-mono flex items-center space-x-1"
+            className="text-[11px] text-[#8968bf] hover:underline font-mono flex items-center space-x-1"
           >
             <span>Full Telemetry Dashboard</span>
             <ChevronRight className="w-3 h-3" />
@@ -157,3 +160,4 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
     </div>
   );
 };
+

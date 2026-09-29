@@ -10,18 +10,22 @@ interface AgentPipelineDrawerProps {
 
 export const AgentPipelineDrawer: React.FC<AgentPipelineDrawerProps> = ({ agents }) => {
   return (
-    <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 space-y-3 shadow-lg">
-      <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-        <div className="flex items-center space-x-2">
-          <Cpu className="w-4 h-4 text-cyan-400" />
+    <div className="bg-[#110d1e]/90 border border-[#8968bf]/[0.2] rounded-xl p-4 space-y-3 shadow-lg backdrop-blur-sm">
+      <div className="flex items-center justify-between pb-2.5 border-b border-[#8968bf]/[0.18]">
+        <div className="flex items-center space-x-2.5">
+          <div className="p-1.5 rounded-lg bg-[#551ca5]/20 border border-[#8968bf]/[0.3] text-[#8968bf]">
+            <Cpu className="w-4 h-4" />
+          </div>
           <h3 className="text-xs font-bold text-white uppercase tracking-wider">
             6-AGENT INTELLIGENCE PIPELINE ORCHESTRATION
           </h3>
         </div>
-        <span className="text-[10px] font-mono text-cyan-400">Autonomous Consensus Pipeline</span>
+        <span className="text-[10px] font-mono text-[#8968bf] bg-[#1c1469]/50 px-2.5 py-0.5 rounded-full border border-[#8968bf]/[0.3]">
+          Autonomous Consensus Pipeline
+        </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 text-xs">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
         {agents.map((agent, index) => {
           const isWarning = agent.state === 'WARNING';
           const isProcessing = agent.state === 'PROCESSING';
@@ -29,17 +33,17 @@ export const AgentPipelineDrawer: React.FC<AgentPipelineDrawerProps> = ({ agents
           return (
             <div
               key={agent.id}
-              className={`p-2.5 rounded-lg border transition space-y-1.5 flex flex-col justify-between ${
+              className={`p-3 rounded-xl border transition-all space-y-2 flex flex-col justify-between shadow-sm ${
                 isWarning
-                  ? 'bg-red-950/40 border-red-500/50 shadow-sm shadow-red-950'
+                  ? 'bg-red-950/40 border-red-500/60 shadow-red-950/30'
                   : isProcessing
-                  ? 'bg-amber-950/40 border-amber-500/40'
-                  : 'bg-slate-950/80 border-slate-800'
+                  ? 'bg-amber-950/40 border-amber-500/50'
+                  : 'bg-[#0a0812]/85 border-[#8968bf]/[0.18] hover:border-[#8968bf]/[0.4]'
               }`}
             >
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] font-mono font-bold text-slate-400">AGENT 0{index + 1}</span>
+                  <span className="text-[10px] font-mono font-bold text-[#8a8299]">AGENT 0{index + 1}</span>
                   {isWarning ? (
                     <span className="flex items-center space-x-1 text-[9px] font-bold text-red-400 bg-red-500/20 px-1.5 py-0.5 rounded border border-red-500/40">
                       <AlertTriangle className="w-2.5 h-2.5" />
@@ -58,13 +62,13 @@ export const AgentPipelineDrawer: React.FC<AgentPipelineDrawerProps> = ({ agents
                   )}
                 </div>
 
-                <div className="font-bold text-[11px] text-slate-100 leading-snug line-clamp-1">
+                <div className="font-bold text-[11px] text-[#f0edf8] leading-snug line-clamp-1">
                   {agent.name.replace(' Agent', '')}
                 </div>
-                <div className="text-[10px] text-slate-400 line-clamp-2 mt-0.5">{agent.role}</div>
+                <div className="text-[10px] text-[#8a8299] line-clamp-2 mt-0.5 leading-relaxed">{agent.role}</div>
               </div>
 
-              <div className="pt-1.5 border-t border-slate-800/80 text-[10px] font-mono text-cyan-300 line-clamp-1">
+              <div className="pt-2 border-t border-[#8968bf]/[0.15] text-[10px] font-mono text-[#8968bf] font-medium line-clamp-1">
                 {agent.metricsProcessed}
               </div>
             </div>
@@ -74,3 +78,4 @@ export const AgentPipelineDrawer: React.FC<AgentPipelineDrawerProps> = ({ agents
     </div>
   );
 };
+

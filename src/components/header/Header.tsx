@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { TelemetryPoint, RiskAssessment } from '@/types/nwis';
 import { getRiskBadgeColor } from '@/lib/utils';
-import { Activity, ShieldAlert, Cpu, Layers, Radio, Play, Pause, RotateCcw, FastForward } from 'lucide-react';
+import { Activity, ShieldAlert, Layers, Radio, Play, Pause, RotateCcw, FastForward, ArrowLeft } from 'lucide-react';
 
 interface HeaderProps {
   telemetry: TelemetryPoint;
@@ -28,125 +29,173 @@ export const Header: React.FC<HeaderProps> = ({
   onReset,
   onFastForward,
   onSetSpeed,
-  activeView,
 }) => {
   return (
-    <header className="bg-slate-950/90 border-b border-slate-800/80 px-4 py-2.5 backdrop-blur-md sticky top-0 z-40 flex flex-wrap items-center justify-between gap-3 text-slate-100 shadow-lg shadow-black/40">
-      {/* Brand & Organization */}
-      <div className="flex items-center space-x-3">
-        <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-600 to-blue-700 p-0.5 shadow-md shadow-cyan-900/40 flex items-center justify-center">
-          <div className="w-full h-full bg-slate-950 rounded-[7px] flex items-center justify-center">
-            <Radio className="w-5 h-5 text-cyan-400 animate-pulse" />
+    <header
+      className="sticky top-0 z-40 backdrop-blur-xl"
+      style={{
+        background: 'rgba(10,8,18,0.92)',
+        borderBottom: '1px solid rgba(137,104,191,0.18)',
+        boxShadow: '0 1px 0 rgba(137,104,191,0.1)',
+      }}
+    >
+      <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5">
+
+        {/* ── Brand ── */}
+        <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2 group">
+            <div
+              className="flex h-8 w-8 items-center justify-center rounded-lg transition-opacity group-hover:opacity-80"
+              style={{ background: 'linear-gradient(135deg,#551ca5,#1c1469)' }}
+            >
+              <Radio className="h-4 w-4 text-white animate-pulse" />
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className="text-sm font-extrabold tracking-widest"
+                style={{ color: '#cec9e1' }}
+              >
+                NWIS
+              </span>
+              <ArrowLeft className="h-3 w-3 opacity-0 group-hover:opacity-50 transition-opacity -ml-1" style={{ color: '#8968bf' }} />
+            </div>
+          </Link>
+
+          <div
+            className="hidden sm:flex items-center gap-1.5 rounded border px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest"
+            style={{ borderColor: 'rgba(137,104,191,0.35)', color: '#8968bf', background: 'rgba(85,28,165,0.15)' }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+            SIMULATION MODE
           </div>
-        </div>
-        <div>
-          <div className="flex items-center space-x-2">
-            <span className="font-extrabold tracking-wider text-base text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-400">
-              NWIS
-            </span>
-            <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30">
-              SIMULATION MODE
-            </span>
-          </div>
-          <p className="text-[11px] text-slate-400 font-medium">
-            Nearby Wells Intelligence System • <span className="text-cyan-300 font-semibold">Oil India Limited (OIL)</span> eRTMAC Companion
-          </p>
-        </div>
-      </div>
 
-      {/* Active Well Status Snapshot */}
-      <div className="hidden lg:flex items-center space-x-4 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 text-xs">
-        <div className="flex items-center space-x-1.5 border-r border-slate-800 pr-3">
-          <Activity className="w-3.5 h-3.5 text-cyan-400" />
-          <span className="text-slate-400">Rig:</span>
-          <span className="font-mono font-bold text-slate-200">OIL-ASSAM-042</span>
-        </div>
-
-        <div className="flex items-center space-x-1 border-r border-slate-800 pr-3">
-          <span className="text-slate-400">Depth:</span>
-          <span className="font-mono font-bold text-cyan-300">{telemetry.depth} m</span>
-          <span className="text-[10px] text-slate-500 font-mono">(TVD {telemetry.tvd}m)</span>
-        </div>
-
-        <div className="flex items-center space-x-1 border-r border-slate-800 pr-3">
-          <Layers className="w-3.5 h-3.5 text-purple-400" />
-          <span className="text-slate-400">Formation:</span>
-          <span className={`font-semibold ${telemetry.formation === 'Kopili Shale' ? 'text-red-400 font-bold' : 'text-purple-300'}`}>
-            {telemetry.formation}
+          <span className="hidden md:block text-[10px]" style={{ color: 'rgba(137,104,191,0.5)' }}>
+            Oil India Limited • eRTMAC Companion
           </span>
         </div>
 
-        <div className="flex items-center space-x-1.5">
-          <ShieldAlert className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-400">Risk:</span>
-          <span
-            className={`px-2 py-0.5 rounded text-[11px] font-bold border uppercase ${getRiskBadgeColor(
-              riskAssessment.level
-            )}`}
+        {/* ── Live Status Strip ── */}
+        <div
+          className="hidden lg:flex items-center gap-0 rounded-lg border text-[11px] font-mono overflow-hidden"
+          style={{ borderColor: 'rgba(137,104,191,0.2)', background: 'rgba(21,17,42,0.8)' }}
+        >
+          <div
+            className="flex items-center gap-1.5 px-3 py-2 border-r"
+            style={{ borderColor: 'rgba(137,104,191,0.15)' }}
           >
-            {riskAssessment.level} ({Math.round(riskAssessment.score * 100)}%)
-          </span>
-        </div>
-      </div>
+            <Activity className="w-3 h-3" style={{ color: '#8968bf' }} />
+            <span style={{ color: 'rgba(206,201,225,0.5)' }}>Well:</span>
+            <span className="font-bold" style={{ color: '#cec9e1' }}>OIL-ASSAM-042</span>
+          </div>
 
-      {/* Interactive Simulation Controls */}
-      <div className="flex items-center space-x-2">
-        <div className="flex items-center bg-slate-900 border border-slate-800 rounded-lg p-1 space-x-1">
-          {isPlaying ? (
-            <button
-              onClick={onPause}
-              className="flex items-center space-x-1 bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 px-2.5 py-1 rounded text-xs font-semibold border border-amber-500/40 transition"
-              title="Pause Drilling Simulation"
+          <div
+            className="flex items-center gap-1 px-3 py-2 border-r"
+            style={{ borderColor: 'rgba(137,104,191,0.15)' }}
+          >
+            <span style={{ color: 'rgba(206,201,225,0.5)' }}>MD:</span>
+            <span className="font-bold" style={{ color: '#8968bf' }}>{telemetry.depth} m</span>
+            <span style={{ color: 'rgba(90,85,130,0.7)', fontSize: '9px' }}>TVD {telemetry.tvd}m</span>
+          </div>
+
+          <div
+            className="flex items-center gap-1 px-3 py-2 border-r"
+            style={{ borderColor: 'rgba(137,104,191,0.15)' }}
+          >
+            <Layers className="w-3 h-3" style={{ color: telemetry.formation === 'Kopili Shale' ? '#ef4444' : '#8968bf' }} />
+            <span
+              className="font-semibold"
+              style={{ color: telemetry.formation === 'Kopili Shale' ? '#f87171' : '#cec9e1' }}
             >
-              <Pause className="w-3.5 h-3.5 fill-current" />
-              <span>PAUSE</span>
-            </button>
-          ) : (
-            <button
-              onClick={onStart}
-              className="flex items-center space-x-1 bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/30 px-2.5 py-1 rounded text-xs font-semibold border border-cyan-500/40 transition shadow-sm shadow-cyan-900/40"
-              title="Start Deterministic Live Simulation"
+              {telemetry.formation}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1.5 px-3 py-2">
+            <ShieldAlert className="w-3 h-3" style={{ color: 'rgba(137,104,191,0.6)' }} />
+            <span
+              className={`px-2 py-0.5 rounded text-[10px] font-bold border uppercase ${getRiskBadgeColor(riskAssessment.level)}`}
             >
-              <Play className="w-3.5 h-3.5 fill-current" />
-              <span>START SIM</span>
-            </button>
-          )}
-
-          <button
-            onClick={onReset}
-            className="p-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded transition"
-            title="Reset Simulation to 3,145 m"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-          </button>
-
-          <button
-            onClick={onFastForward}
-            className="flex items-center space-x-1 text-slate-300 hover:text-amber-300 hover:bg-slate-800 px-2 py-1 rounded text-xs font-semibold transition"
-            title="Fast Forward to Pack-Off Precursor Hazard Zone (Step 52)"
-          >
-            <FastForward className="w-3.5 h-3.5 text-amber-400" />
-            <span className="hidden sm:inline">HAZARD PRESET</span>
-          </button>
+              {riskAssessment.level} {Math.round(riskAssessment.score * 100)}%
+            </span>
+          </div>
         </div>
 
-        {/* Speed Selector */}
-        <div className="hidden sm:flex items-center bg-slate-900 border border-slate-800 rounded-lg p-1 space-x-0.5 text-xs font-mono">
-          {[1, 2, 4].map((s) => (
+        {/* ── Simulation Controls ── */}
+        <div className="flex items-center gap-2">
+          {/* Main play/pause */}
+          <div
+            className="flex items-center rounded-lg border p-1 gap-1"
+            style={{ borderColor: 'rgba(137,104,191,0.2)', background: 'rgba(21,17,42,0.8)' }}
+          >
+            {isPlaying ? (
+              <button
+                onClick={onPause}
+                className="flex items-center gap-1.5 rounded px-2.5 py-1.5 text-xs font-semibold transition-all"
+                style={{ background: 'rgba(251,191,36,0.15)', color: '#fbbf24', border: '1px solid rgba(251,191,36,0.3)' }}
+                title="Pause Simulation"
+              >
+                <Pause className="w-3.5 h-3.5 fill-current" />
+                <span>PAUSE</span>
+              </button>
+            ) : (
+              <button
+                onClick={onStart}
+                className="flex items-center gap-1.5 rounded px-2.5 py-1.5 text-xs font-semibold transition-all hover:opacity-90"
+                style={{ background: 'linear-gradient(135deg,#551ca5,#3d2aab)', color: '#fff', boxShadow: '0 0 12px rgba(85,28,165,0.4)' }}
+                title="Start Deterministic Live Simulation"
+              >
+                <Play className="w-3.5 h-3.5 fill-current" />
+                <span>START SIM</span>
+              </button>
+            )}
+
             <button
-              key={s}
-              onClick={() => onSetSpeed(s)}
-              className={`px-2 py-0.5 rounded font-bold transition ${
-                speed === s
-                  ? 'bg-cyan-500/30 text-cyan-300 border border-cyan-500/50'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
+              onClick={onReset}
+              className="p-1.5 rounded transition-colors"
+              style={{ color: 'rgba(137,104,191,0.6)' }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#8968bf'; (e.currentTarget as HTMLElement).style.background = 'rgba(85,28,165,0.15)'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'rgba(137,104,191,0.6)'; (e.currentTarget as HTMLElement).style.background = ''; }}
+              title="Reset to 3,145 m"
             >
-              {s}x
+              <RotateCcw className="w-3.5 h-3.5" />
             </button>
-          ))}
+
+            <button
+              onClick={onFastForward}
+              className="flex items-center gap-1 px-2 py-1.5 rounded text-xs font-semibold transition-all"
+              style={{ color: '#fbbf24' }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(251,191,36,0.1)'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = ''; }}
+              title="Jump to Pack-Off Hazard Zone (Step 52)"
+            >
+              <FastForward className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">HAZARD</span>
+            </button>
+          </div>
+
+          {/* Speed selector */}
+          <div
+            className="hidden sm:flex items-center rounded-lg border p-1 gap-0.5 text-xs font-mono"
+            style={{ borderColor: 'rgba(137,104,191,0.2)', background: 'rgba(21,17,42,0.8)' }}
+          >
+            {[1, 2, 4].map((s) => (
+              <button
+                key={s}
+                onClick={() => onSetSpeed(s)}
+                className="px-2 py-0.5 rounded font-bold transition-all"
+                style={{
+                  background: speed === s ? 'rgba(85,28,165,0.4)' : 'transparent',
+                  color: speed === s ? '#cec9e1' : 'rgba(90,85,130,0.8)',
+                  border: speed === s ? '1px solid rgba(137,104,191,0.4)' : '1px solid transparent',
+                }}
+              >
+                {s}x
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </header>
   );
 };
+

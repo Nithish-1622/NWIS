@@ -1,26 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────
+   NWIS × Astro Build Design System
+   Adapted from: https://inspomcp.dev/sites/astro-build
+   Palette: deep purple · geometric · dark mode · high-contrast
+───────────────────────────────────────────── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core purple surface hierarchy */
+  --nwis-bg:          #0a0812;   /* near-black with purple cast */
+  --nwis-bg-raised:   #110d1e;   /* raised surface */
+  --nwis-bg-panel:    #15112a;   /* panel / card */
+  --nwis-bg-deep:     #1c1469;   /* deep purple (astro surface raised) */
+
+  /* Purple palette */
+  --nwis-purple-900:  #0f0a22;
+  --nwis-purple-800:  #1c1469;   /* astro: surface raised */
+  --nwis-purple-700:  #2d1f8a;
+  --nwis-purple-600:  #3d2aab;
+  --nwis-purple-500:  #551ca5;   /* astro: support */
+  --nwis-purple-400:  #7040c8;
+  --nwis-purple-300:  #8968bf;   /* astro: accent */
+  --nwis-purple-200:  #a98fda;
+  --nwis-purple-100:  #cec9e1;   /* astro: support light */
+  --nwis-purple-50:   #edeaf5;
+
+  /* Supporting muted purple */
+  --nwis-muted:       #5a5582;   /* astro: support muted */
+
+  /* Semantic status (adapted to purple-dominant theme) */
+  --nwis-normal:      #22c55e;   /* green kept for NORMAL risk */
+  --nwis-elevated:    #eab308;   /* amber for ELEVATED */
+  --nwis-caution:     #f97316;   /* orange for CAUTION */
+  --nwis-critical:    #ef4444;   /* red for CRITICAL */
+  --nwis-info:        #8968bf;   /* purple accent for info */
+
+  /* Typography */
+  --nwis-text-primary:   #f0edf8;
+  --nwis-text-secondary: #cec9e1;
+  --nwis-text-muted:     #8a8299;
+  --nwis-text-faint:     #5a5582;
+
+  /* Borders */
+  --nwis-border:         rgba(137, 104, 191, 0.18);
+  --nwis-border-strong:  rgba(137, 104, 191, 0.35);
+  --nwis-border-accent:  rgba(137, 104, 191, 0.6);
+
+  /* Spacing (4px base) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-12: 48px;
+  --sp-20: 80px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Container */
+  --container-max: 1440px;
+
+  /* Heading */
+  --heading-weight: 700;
+  --heading-weight-light: 300;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--nwis-bg);
+  color: var(--nwis-text-primary);
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  min-height: 100dvh;
+}
+
+/* ── Heading scale (adapted Astro ratio) ── */
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;   line-height: 1.1;  letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300; line-height: 1.11; letter-spacing: -0.01em; }
+h3 { font-size: 1rem;    font-weight: 600;  line-height: 1.5; }
+h4 { font-size: 0.875rem; font-weight: 600; line-height: 1.4; }
+
+/* ── Custom selection ── */
+::selection {
+  background: rgba(137, 104, 191, 0.35);
+  color: #f0edf8;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: var(--nwis-bg); }
+::-webkit-scrollbar-thumb  { background: var(--nwis-muted); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--nwis-purple-300); }
+
+/* ── Utility classes generated from design tokens ── */
+.nwis-panel {
+  background: var(--nwis-bg-panel);
+  border: 1px solid var(--nwis-border);
+  border-radius: var(--radius-lg);
+}
+
+.nwis-panel-raised {
+  background: var(--nwis-bg-raised);
+  border: 1px solid var(--nwis-border);
+  border-radius: var(--radius-lg);
+}
+
+.nwis-accent-glow {
+  box-shadow: 0 0 32px rgba(85, 28, 165, 0.25), 0 0 64px rgba(85, 28, 165, 0.1);
+}
+
+.nwis-purple-gradient {
+  background: linear-gradient(135deg, #551ca5 0%, #1c1469 50%, #0a0812 100%);
+}
+
+.nwis-mesh-bg {
+  background-color: var(--nwis-bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(85, 28, 165, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(28, 20, 105, 0.2) 0%, transparent 50%);
+}
+
+/* ── Telemetry number animation ── */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-count { animation: countUp 0.3s ease-out; }
+
+/* ── Critical pulse ── */
+@keyframes criticalPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.65; }
+}
+.animate-critical { animation: criticalPulse 1.4s ease-in-out infinite; }
+
+/* ── Shimmer for skeleton states ── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #1c1469 25%, #2d1f8a 50%, #1c1469 75%);
+  background-size: 200% auto;
+  animation: shimmer 1.5s linear infinite;
 }
